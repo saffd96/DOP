@@ -3,53 +3,48 @@ using UnityEngine;
 
 public class Touch : MonoBehaviour
 {
-   [SerializeField] private GameObject linePrefab;
+   [SerializeField] private TrailRenderer trailRendererPrefab;
    [SerializeField] private Camera mainCam;
-   [SerializeField] private Eraser eraserScript;
    
-    private Coroutine _drawing;
+    private Coroutine _drawingRoutine;
+    private TrailRenderer _currentTrailRenderer;
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            StartLine();
+            SpawnTrail();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            FinishLine();
+            FinishRemoveTrail();
         }
     }
 
-    private void StartLine()
+    private void SpawnTrail()
     {
-        if (_drawing != null)
+        if (_drawingRoutine != null)
         {
-            StopCoroutine(_drawing);
+            StopCoroutine(_drawingRoutine);
         }
-
-        _drawing = StartCoroutine(DrawLine());
+        
+        _currentTrailRenderer = Instantiate(trailRendererPrefab, Vector3.zero, Quaternion.identity);
+        _drawingRoutine = StartCoroutine(DrawLine());
     }
 
-    private void FinishLine()
+    private void FinishRemoveTrail()
     {
-        if (_drawing != null)
-            StopCoroutine(_drawing);
+        StopCoroutine(_drawingRoutine);
     }
 
     private IEnumerator DrawLine()
     {
-        var newLine = Instantiate(linePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        LineRenderer line = newLine.GetComponent<LineRenderer>();
-        line.positionCount = 0;
         while (true)
         {
-            Vector3 position = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            position.z = 0;
-            line.positionCount++;
-            line.SetPosition(line.positionCount - 1, position);
-            eraserScript.AssignScreenAsMask();
+            var a = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            var position = new Vector3(a.x, a.y, 10);
+            _currentTrailRenderer.transform.position = position;
             yield return null;
         }
     }

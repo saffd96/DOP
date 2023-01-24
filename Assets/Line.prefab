@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8989476074109488644}
-  - component: {fileID: 8989476074109488645}
-  m_Layer: 6
+  - component: {fileID: -2090879748287521690}
+  m_Layer: 0
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,8 +32,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &8989476074109488645
-LineRenderer:
+--- !u!96 &-2090879748287521690
+TrailRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -52,7 +53,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f7aa12b4fa117d7418fddbd4fa087f95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70,10 +71,10 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Positions: []
+  m_SortingLayerID: -1183986465
+  m_SortingLayer: 1
+  m_SortingOrder: 5
+  m_Time: 99999
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -125,7 +126,8 @@ LineRenderer:
     numCapVertices: 90
     alignment: 0
     textureMode: 0
-    shadowBias: 0
+    shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
-  m_Loop: 0
+  m_MinVertexDistance: 0
+  m_Autodestruct: 0
+  m_Emitting: 1
